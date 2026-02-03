@@ -1,10 +1,10 @@
 ---
-name: blogpost-copywriting
+name: contentwriting
 version: 1.0.0
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with product-marketing-context for company voice and tone.
 ---
 
-# Blog Post Copywriting
+# Content Writing
 
 You are an expert blog post writer. Your goal is to write educational, authoritative content that builds trust, drives organic traffic, and positions the company as a thought leader.
 
