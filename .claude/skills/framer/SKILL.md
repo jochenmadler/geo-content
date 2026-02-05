@@ -30,11 +30,24 @@ Content needs different formats for different destinations. A markdown file opti
 
 ---
 
-## Supported Formats
+## Constraint: Maximum 7 Sections
 
-### Framer Format
+Framer CMS only supports **7 Subtitle/Content pairs** (SUBTITLE MAIN + CONTENT 1 through SUBTITLE 7 + CONTENT 7).
 
-For websites built on Framer CMS.
+If the article has more than 7 H2 sections:
+1. Count total H2 headings (excluding Sources)
+2. Identify sections that can be logically combined
+3. Merge related sections, using the broader topic as the subtitle
+4. Convert the original H2s of merged sections into **bold headings** within the combined content
+5. Prioritize keeping distinct topics separate; merge sections that flow together naturally
+
+**Example consolidation:**
+- "The Platforms" + "AI-Powered Platforms" → "The Platforms" (with AI-Powered as bold subheading)
+- "Strategy 1-3" + "Strategy 4-7" → "Strategies to Reduce Delays" (numbered within)
+
+---
+
+## Framer CMS Structure
 
 **Structure:**
 ```
@@ -73,38 +86,6 @@ END OF ARTICLE
 ================================================================================
 ```
 
-### Generic CMS Format
-
-For WordPress, Webflow, Ghost, and similar platforms.
-
-**Structure:**
-```
-================================================================================
-CMS IMPORT - [Article Title]
-================================================================================
-
---- META ---
-Title: [Full title]
-Slug: [url-slug]
-Excerpt: [150-160 character summary]
-Category: [Primary category]
-Tags: [comma, separated, tags]
-Author: [Author name if specified]
-Publish Date: [YYYY-MM-DD]
-Featured Image Alt: [Alt text description]
-
---- CONTENT ---
-
-[Full article content in clean HTML or markdown, depending on CMS]
-
---- SEO ---
-Meta Title: [50-60 chars]
-Meta Description: [150-160 chars]
-Focus Keyword: [Primary keyword]
-
-================================================================================
-```
-
 ---
 
 ## Transformation Rules
@@ -119,7 +100,7 @@ Focus Keyword: [Primary keyword]
 - **Bold/Italic** → Keep as-is (most CMS support markdown)
 - **Bullet lists** → Keep as-is
 - **Numbered lists** → Keep as-is
-- **Tables** → Keep as markdown tables (note if CMS doesn't support)
+- **Tables** → Preserve as markdown tables (Framer rich text supports tables)
 - **Blockquotes** → Keep as-is
 - **Code blocks** → Keep as-is
 
@@ -178,12 +159,9 @@ Read the markdown file and identify:
 - Featured image description (if present)
 - Sources section
 
-### Step 2: Determine Target Format
+### Step 2: Check Section Count
 
-Ask or infer the target CMS:
-- Framer → Use Framer format
-- WordPress/Webflow/Ghost → Use generic CMS format
-- Other → Ask for format requirements
+Count H2 sections (excluding Sources). If >7, plan a consolidation strategy per the constraint above.
 
 ### Step 3: Transform Content
 
@@ -213,7 +191,7 @@ Save the formatted file with the `-formatted.txt` suffix as described in the Arg
 Before delivering formatted content:
 
 - [ ] Title extracted correctly (no markdown artifacts)
-- [ ] All H2 sections captured as separate blocks
+- [ ] All H2 sections captured as separate blocks (max 7; consolidated if needed)
 - [ ] No broken formatting from transformation
 - [ ] Read time calculated
 - [ ] Slug is URL-safe
@@ -223,28 +201,12 @@ Before delivering formatted content:
 
 ---
 
-## CMS-Specific Notes
+## Framer-Specific Notes
 
-### Framer
-- Rich text supports **bold**, *italic*, lists, and basic formatting
-- Tables may need to be images or simplified
-- Links should be added manually in the editor
+- Rich text supports **bold**, *italic*, lists, tables, and basic formatting
+- Links should be added manually in the Framer editor
 - Images are handled separately through Framer's media library
-
-### WordPress
-- Full HTML support
-- Can use Gutenberg blocks format if needed
-- Shortcodes can be included
-
-### Webflow
-- Rich text has formatting limitations
-- Complex tables may need custom code
-- CMS collections have character limits
-
-### Ghost
-- Supports markdown natively
-- Cards for special content (images, embeds)
-- Limited custom formatting
+- Maximum 7 Subtitle/Content pairs (see constraint above)
 
 ---
 
