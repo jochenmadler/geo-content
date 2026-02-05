@@ -120,6 +120,24 @@ These skills work together in sequence:
 
 ---
 
+## Cross-Reference Matrix
+
+Which skills reference which:
+
+| Skill | References | Referenced By |
+|-------|-----------|---------------|
+| **product-marketing-context** | — | contentwriting, copywriting, copy-editing, seo-audit, programmatic-seo, humanize |
+| **contentwriting** | copy-editing, copywriting, product-marketing-context, seo-audit, programmatic-seo | copywriting, copy-editing, seo-audit, programmatic-seo |
+| **copywriting** | copy-editing, humanize, contentwriting | contentwriting, copy-editing |
+| **copy-editing** | copywriting, contentwriting, humanize | contentwriting, copywriting, seo-audit, programmatic-seo |
+| **humanize** | contentwriting, copywriting, copy-editing | copywriting, copy-editing |
+| **seo-audit** | programmatic-seo, contentwriting, copy-editing | contentwriting |
+| **programmatic-seo** | seo-audit, contentwriting, copy-editing | seo-audit |
+| **cms-format** | contentwriting, humanize, copy-editing | — |
+| **find-skills** | — | — |
+
+---
+
 ## Missing Skills (Potential Gaps)
 
 Based on the pipeline, these skills could be added later:
@@ -129,8 +147,20 @@ Based on the pipeline, these skills could be added later:
 | **content-briefing** | Create content briefings from keyword research | Manual research |
 | **image-generation** | Generate/describe featured images | Manual in contentwriting |
 | **internal-linking** | Add internal links across articles | Manual |
-| **schema-markup** | Add structured data to pages | Referenced in seo-audit |
-| **email-sequence** | Email copy (nurture, launch, etc.) | Referenced in copywriting |
+| **schema-markup** | Add structured data to pages | Manual |
+| **email-sequence** | Email copy (nurture, launch, etc.) | Manual |
+
+---
+
+## Context File Location
+
+All skills that need brand/voice context check for:
+
+```
+.claude/product-marketing-context.md
+```
+
+This file should be created once per client project using the `product-marketing-context` skill.
 
 ---
 
