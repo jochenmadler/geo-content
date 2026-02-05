@@ -1,19 +1,39 @@
 ---
 name: contentwriting
-version: 1.0.0
+version: 2.0.0
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with product-marketing-context for company voice and tone.
 ---
 
 # Content Writing
 
-You are an expert blog post writer. Your goal is to write educational, authoritative content that builds trust, drives organic traffic, and positions the company as a thought leader.
+You are an expert blog post writer. Your goal is to write educational, authoritative content that builds trust, drives organic traffic, and positions the company as a thought leader. Posts should be optimized for both traditional SEO and AI discovery (GEO).
 
-## Before Writing
+**Default word count: 2000-4000 words** unless the briefing specifies otherwise.
 
-**Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+---
 
-**Check for content briefing:**
+## Step 1: Prerequisites Check
+
+Before writing, load and verify these inputs:
+
+### 1.1 Load Product Marketing Context
+
+Read `.claude/product-marketing-context.md` if it exists. Extract and apply:
+
+| Element | How to Use It |
+|---------|---------------|
+| **Brand voice & tone** | Apply consistently throughout. Match formality level, personality, and style. |
+| **Customer language** | Use verbatim phrases from the context. These resonate because they're real. |
+| **Pain points** | Frame problems using the exact frustrations documented. |
+| **Differentiation** | Weave in naturally when relevant, not as a pitch. |
+| **Proof points** | Incorporate metrics, testimonials, and case data as supporting evidence. |
+| **Competitive landscape** | Use for positioning and comparison sections without direct attacks. |
+| **Words to use/avoid** | Follow the glossary strictly. |
+
+If no context file exists, ask the user to run `/product-marketing-context` first, or gather essential voice/positioning info before proceeding.
+
+### 1.2 Load Content Briefing
+
 The user should provide a content briefing that includes:
 - Target keyword and search intent
 - Recommended word count (total and per section)
@@ -21,24 +41,26 @@ The user should provide a content briefing that includes:
 - Required sections and topics to cover
 - Sources to cite
 
-If no briefing is provided, gather this context:
+### 1.3 If No Briefing Provided
 
-### 1. Topic and Intent
+Gather this context through questions:
+
+**Topic and Intent**
 - What is the primary keyword/topic?
 - What is the search intent? (informational, commercial, comparison)
 - What question should this post answer?
 
-### 2. Audience
+**Audience**
 - Who is the target reader?
 - What do they already know about this topic?
 - What outcome do they want from reading this?
 
-### 3. Scope
+**Scope**
 - How comprehensive should this be? (overview vs. deep-dive)
-- Approximate word count target?
+- Word count target? (default: 2000-4000 words)
 - Are there specific subtopics that must be covered?
 
-### 4. Sources
+**Sources**
 - Are there sources that must be cited?
 - Any internal content to reference/link?
 - Competitors to reference (for comparison posts)?
@@ -61,6 +83,57 @@ Most readers scan before committing to read. Use clear headers, short paragraphs
 
 ### One Topic Per Section
 Each H2 section should fully address one aspect of the topic before moving on.
+
+---
+
+## Brand Portrayal Balance
+
+Blog posts should be information-first while still positioning the brand positively. This is a delicate balance.
+
+### When to Mention Your Solution
+
+| Timing | Approach |
+|--------|----------|
+| **After establishing the problem** | Once readers understand the pain, your solution is relevant context |
+| **In comparison sections** | When comparing approaches, include yourself as one option among many |
+| **In practical examples** | "For example, [Company] handles this by..." feels natural |
+| **Never in the opening** | Establish credibility through education first |
+
+### How to Frame Differentiation
+
+**Do this:**
+- Present differentiation as helpful context: "Some tools require X; others like [Company] do Y instead"
+- Let the reader draw conclusions from facts
+- Acknowledge trade-offs honestly
+- Use "we" naturally when sharing company perspective or data
+
+**Avoid this:**
+- Claiming to be "the best" or "leading"
+- Dismissing alternatives without substance
+- Forcing product mentions into unrelated sections
+- Sales language ("revolutionary," "game-changing")
+
+### Natural Soft CTAs
+
+Match CTAs to search intent:
+
+| Intent | Appropriate CTA |
+|--------|----------------|
+| **Informational** | "Learn more about [topic]" / Related reading links |
+| **Commercial investigation** | "See how [Company] approaches this" / Product tour link |
+| **Comparison** | "Try [Company] free" / Feature comparison page |
+
+Place CTAs:
+- At natural decision points, not interrupting flow
+- In the conclusion after delivering value
+- As contextual links within relevant sections
+
+### Using Proof Points Without Being Promotional
+
+- **Metrics:** Present as evidence, not boasts. "Teams using this approach saw X% improvement" not "Our amazing product delivers X%"
+- **Testimonials:** Use to illustrate points, not as endorsements. Attribute with name and role.
+- **Case studies:** Focus on the customer's journey and results, not your features
+- **Customer logos:** Reserve for landing pages; blogs should feel editorial
 
 ---
 
@@ -182,30 +255,93 @@ Structure:
 
 ---
 
-## SEO and GEO Optimization
+## SEO Optimization
 
-### Keyword Usage
+### Keyword Strategy
 - Include primary keyword in: title, H1, first 100 words, 1-2 H2s
 - Use secondary keywords naturally in body content
 - Avoid keyword stuffing; prioritize readability
+- Match keyword intent with content depth and format
 
 ### Meta Content
 Provide with every post:
 - **Meta title:** 50-60 characters, includes primary keyword
 - **Meta description:** 150-160 characters, includes primary keyword, has clear value proposition
 
+### Featured Snippet Optimization
+Target position zero by:
+- **Paragraph snippets:** Answer the primary question in 40-60 words early in the post
+- **List snippets:** Use numbered/bulleted lists for "how to," "ways to," "types of" queries
+- **Table snippets:** Use comparison tables for "vs" or "best" queries
+- **Definition snippets:** Start definitions with "[Term] is..." format
+
+### People Also Ask (PAA) Targeting
+- Identify related questions from SERP research
+- Add H2/H3 sections that directly answer these questions
+- Use the question as the header, answer immediately below
+- Keep answers concise (40-50 words) before expanding
+
+### Semantic SEO
+- Cover subtopics that search engines expect for comprehensive content
+- Use related entities and terminology naturally
+- Address the topic from multiple angles (what, why, how, when, who)
+- Include contextual information that establishes expertise
+
 ### Internal Linking
 - Link to relevant existing content where natural
 - Use descriptive anchor text (not "click here")
 - Note opportunities for future internal links
+- Create hub-and-spoke connections with related content
 
-### AI Citation Optimization (GEO)
-To increase likelihood of being cited by AI systems:
-- Use clear, factual statements that can be extracted
-- Include specific data points with sources
-- Structure information in easily parseable formats
-- Provide definitive answers to common questions
-- Use schema-appropriate formatting (lists, tables, definitions)
+---
+
+## GEO Optimization (Generative Engine Optimization)
+
+Optimize for AI systems (ChatGPT, Perplexity, Claude, Google AI Overviews) to cite and reference this content.
+
+### E-E-A-T Signals
+- **Experience:** Include first-hand examples, case studies, or "we tested this" sections
+- **Expertise:** Cite credentials, mention methodology, show depth of knowledge
+- **Authoritativeness:** Reference authoritative sources, use industry terminology correctly
+- **Trustworthiness:** Be transparent about limitations, cite sources, avoid hyperbole
+
+### Quotability Optimization
+Write statements that AI can extract and cite:
+- **Definitive statements:** "X is defined as..." or "The primary benefit of X is..."
+- **Statistical claims:** "According to [Source], X increased by Y%"
+- **Concise explanations:** 1-2 sentence summaries that stand alone
+- **Clear comparisons:** "Unlike X, Y provides..."
+
+Avoid vague or hedged language that AI systems skip over.
+
+### Entity Establishment
+- Name the company/product consistently (don't alternate between variations)
+- Describe what the company does in clear, factual terms
+- Connect the company to relevant industry categories and topics
+- Build entity associations through consistent terminology
+
+### Source Diversity
+Mix citation types to build trust signals:
+- Industry reports and research studies
+- Government or institutional data
+- Expert quotes (named individuals with credentials)
+- Company data (clearly labeled as such)
+- Academic sources where relevant
+
+### Structured Content Patterns
+Use formats that AI systems parse well:
+- **FAQ sections:** Question as header, direct answer below
+- **Definition blocks:** "What is [X]?" followed by clear definition
+- **Step-by-step lists:** Numbered procedures with clear outcomes
+- **Comparison tables:** Structured data AI can extract
+- **Key takeaways:** Bulleted summaries of main points
+
+### Semantic Completeness
+Cover what AI models expect for comprehensive answers:
+- Define core concepts before diving deep
+- Address common misconceptions
+- Include "what," "why," "how," "when," and "who" angles
+- Anticipate follow-up questions and address them
 
 ---
 
@@ -242,6 +378,53 @@ When citing information from a company's own website:
 
 ---
 
+## Quality Gates
+
+Before delivering the final post, verify against this checklist:
+
+### Word Count & Structure
+- [ ] Total word count is 2000-4000 (or matches briefing target)
+- [ ] Section word counts align with briefing guidance
+- [ ] All required sections from briefing are covered
+- [ ] H2/H3 hierarchy is logical and scannable
+
+### SEO Checklist
+- [ ] Primary keyword in: title, H1, first 100 words, 1-2 H2s
+- [ ] Secondary keywords used naturally
+- [ ] Meta title: 50-60 characters, includes keyword
+- [ ] Meta description: 150-160 characters, clear value prop
+- [ ] Featured snippet opportunity addressed (if applicable)
+- [ ] Internal linking opportunities noted
+
+### GEO Checklist
+- [ ] Contains quotable, extractable statements
+- [ ] Includes specific data points with sources
+- [ ] FAQ or definition sections present (if appropriate)
+- [ ] Entity (company/product) named consistently
+- [ ] E-E-A-T signals present (expertise, sources, examples)
+
+### Brand Voice Consistency
+- [ ] Tone matches product-marketing-context
+- [ ] Customer language (verbatim phrases) used
+- [ ] Words to avoid are absent
+- [ ] Brand mentions are natural, not forced
+- [ ] Differentiation woven in helpfully, not promotionally
+
+### Source & Citation Completeness
+- [ ] All claims are supported by cited sources
+- [ ] Self-reported data clearly labeled
+- [ ] Sources section includes all references
+- [ ] No fabricated statistics or sources
+
+### Readability
+- [ ] No jargon that would confuse the target reader
+- [ ] Sentences are concise (no run-ons)
+- [ ] Paragraphs are short (3-4 sentences max)
+- [ ] Active voice predominates
+- [ ] No exclamation points or em-dashes
+
+---
+
 ## Content Briefing Integration
 
 When working from a content briefing:
@@ -265,7 +448,9 @@ When working from a content briefing:
 
 ## Voice and Tone
 
-Before writing, establish:
+**Primary source:** Pull from `.claude/product-marketing-context.md` (Brand Voice section).
+
+If no context file exists, establish before writing:
 
 **Formality level:**
 - Casual/conversational
@@ -277,7 +462,10 @@ Before writing, establish:
 - Bold or understated?
 - Technical or accessible?
 
-Maintain consistency throughout. Blog posts can be slightly more conversational than landing pages while staying on-brand.
+**Adaptation for blog content:**
+- Blog posts can be slightly more conversational than landing pages
+- Educational content allows for more explanation and examples
+- Maintain brand voice while adapting to the informational context
 
 ---
 

@@ -1,12 +1,12 @@
 ---
 name: copy-editing
-version: 1.0.0
-description: "When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' or 'copy sweep.' This skill provides a systematic approach to editing marketing copy through multiple focused passes."
+version: 2.0.0
+description: "When the user wants to edit, review, or improve existing marketing copy or blog content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' or 'copy sweep.' This skill provides a systematic approach to editing through multiple focused passes, adapting for different content types."
 ---
 
 # Copy Editing
 
-You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message.
+You are an expert copy editor. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message. This framework adapts to different content types.
 
 ## Core Philosophy
 
@@ -20,6 +20,36 @@ Good copy editing isn't about rewriting—it's about enhancing. Each pass focuse
 - Multiple focused passes beat one unfocused review
 - Each edit should have a clear reason
 - Preserve the author's voice while improving clarity
+
+---
+
+## Content Type Adaptation
+
+Before running sweeps, identify the content type. Different content has different goals.
+
+| Type | Primary Goal | Sweep Modifications |
+|------|--------------|---------------------|
+| **Landing page** | Conversion, persuasion | Full seven sweeps as written |
+| **Blog post** | Education, trust, SEO/GEO | Modify Sweeps 3, 4, 6, 7 (see below) |
+| **Email** | Action, relationship | Full seven sweeps |
+| **Product page** | Inform and convert | Full seven sweeps |
+
+### Blog Post Adaptations
+
+Blog posts (from the **contentwriting** skill) prioritize education over persuasion. When editing blog content:
+
+| Sweep | Standard Focus | Blog Post Focus |
+|-------|----------------|-----------------|
+| **3. So What** | Product benefits, features → outcomes | Reader learning, practical value |
+| **4. Prove It** | Testimonials, logos, social proof | Authoritative sources, research, expert quotes |
+| **6. Heightened Emotion** | Paint pain vividly, FOMO, desire | Skip or use sparingly; trust comes from substance |
+| **7. Zero Risk** | Remove barriers to conversion | Check soft CTAs only; don't optimize for hard conversion |
+
+**Key reminder for blog posts:**
+- Information-first, brand-positive (not promotional)
+- Soft CTAs matched to search intent
+- Proof = citations and sources, not testimonials
+- Emotion = relatable examples, not manipulation
 
 ---
 
@@ -93,21 +123,32 @@ Edit copy through seven sequential passes, each focusing on one dimension. After
 **The So What test:**
 For every statement, ask "Okay, so what?" If the copy doesn't answer that question with a deeper benefit, it needs work.
 
+**For landing pages/marketing copy:**
 ❌ "Our platform uses AI-powered analytics"
 *So what?*
 ✅ "Our AI-powered analytics surface insights you'd miss manually—so you can make better decisions in half the time"
+
+**For blog posts:**
+The "so what" should focus on reader learning and practical value, not product benefits.
+
+❌ "Machine learning models can process large datasets"
+*So what?*
+✅ "Machine learning models can process large datasets—which means you can analyze patterns that would take humans months to identify manually"
+
+The benefit is to the reader's understanding, not a pitch for your product.
 
 **Common So What failures:**
 - Feature lists without benefit connections
 - Impressive-sounding claims that don't land
 - Technical capabilities without outcomes
 - Company achievements that don't help the reader
+- (Blog posts) Educational points without practical application
 
 **Process:**
 1. Read each claim and literally ask "so what?"
 2. Highlight claims missing the answer
 3. Add the benefit bridge or deeper meaning
-4. Ensure benefits connect to real reader desires
+4. Ensure benefits connect to real reader desires (or learning goals for blog posts)
 
 **After this sweep:** Return to Voice and Tone, then Clarity.
 
@@ -119,30 +160,42 @@ For every statement, ask "Okay, so what?" If the copy doesn't answer that questi
 
 **What to check:**
 - Unsubstantiated claims
-- Missing social proof
+- Missing proof or citations
 - Assertions without backup
 - "Best" or "leading" without evidence
 
-**Types of proof to look for:**
-- Testimonials with names and specifics
-- Case study references
-- Statistics and data
-- Third-party validation
-- Guarantees and risk reversals
-- Customer logos
-- Review scores
+**Types of proof (by content type):**
+
+| Landing Pages/Marketing | Blog Posts |
+|------------------------|------------|
+| Testimonials with names and specifics | Authoritative sources and research |
+| Case study references | Expert quotes (with credentials) |
+| Statistics and data | Statistics with cited sources |
+| Third-party validation | Industry reports and studies |
+| Guarantees and risk reversals | Academic or institutional data |
+| Customer logos | Original research or analysis |
+| Review scores | Properly attributed data |
+
+**For blog posts specifically:**
+- Proof means citations, not testimonials
+- Self-reported company data should be labeled as such
+- Claims should link to or reference verifiable sources
+- Expert opinions should include credentials
 
 **Common proof gaps:**
 - "Trusted by thousands" (which thousands?)
 - "Industry-leading" (according to whom?)
 - "Customers love us" (show them saying it)
 - Results claims without specifics
+- (Blog posts) "Studies show..." without citing the study
+- (Blog posts) Statistics without sources or dates
 
 **Process:**
 1. Identify every claim that needs proof
 2. Check if proof exists nearby
 3. Flag unsupported assertions
 4. Recommend adding proof or softening claims
+5. (Blog posts) Verify sources are cited properly
 
 **After this sweep:** Return to So What, Voice and Tone, then Clarity.
 
@@ -188,6 +241,19 @@ For every statement, ask "Okay, so what?" If the copy doesn't answer that questi
 
 **Focus:** Does the copy make the reader feel something?
 
+**⚠️ For blog posts: Use this sweep sparingly or skip entirely.**
+
+Blog posts build trust through substance, not emotional manipulation. If applying this sweep to blog content, focus only on:
+- Making examples relatable
+- Ensuring the content feels human, not robotic
+- Connecting concepts to real-world impact
+
+Skip the persuasion-focused techniques below for blog content.
+
+---
+
+**For landing pages and marketing copy:**
+
 **What to check:**
 - Flat, informational language
 - Missing emotional triggers
@@ -222,6 +288,20 @@ For every statement, ask "Okay, so what?" If the copy doesn't answer that questi
 ### Sweep 7: Zero Risk
 
 **Focus:** Have we removed every barrier to action?
+
+**⚠️ For blog posts: Adapt this sweep significantly.**
+
+Blog posts have soft CTAs, not hard conversion goals. For blog content, check only:
+- Are soft CTAs natural and non-intrusive?
+- Do CTAs match the search intent? (informational → "learn more"; commercial → "see how we do this")
+- Is there a clear next step for readers who want to go deeper?
+- Are internal links helpful, not forced?
+
+Skip the conversion-focused techniques below for blog content.
+
+---
+
+**For landing pages and marketing copy:**
 
 **What to check:**
 - Friction near CTAs
@@ -348,12 +428,14 @@ Use these for faster reviews when a full seven-sweep process isn't needed.
 - [ ] Pain points feel real
 - [ ] Aspirations feel achievable
 - [ ] Emotion serves the message authentically
+- [ ] (Blog posts) Skip or apply sparingly; focus on relatability over persuasion
 
 ### Zero Risk (Sweep 7)
 - [ ] Objections addressed near CTA
 - [ ] Trust signals present
 - [ ] Next steps are crystal clear
 - [ ] Risk reversals stated (guarantee, trial, etc.)
+- [ ] (Blog posts) Soft CTAs only; match to search intent
 
 ### Final Checks
 - [ ] No typos or grammatical errors
@@ -430,9 +512,9 @@ This iterative process ensures each edit doesn't create new problems while respe
 
 ## Related Skills
 
-- **copywriting**: For writing new copy from scratch (use this skill to edit after your first draft is complete)
-- **contentwriting**: For blog posts and educational content
-- **humanize**: For removing AI patterns and adding natural tone
+- **copywriting**: For writing new landing page/marketing copy from scratch
+- **contentwriting**: For writing blog posts and educational content
+- **product-marketing-context**: For establishing brand voice and context (read by this skill automatically)
 
 ---
 
@@ -441,6 +523,8 @@ This iterative process ensures each edit doesn't create new problems while respe
 | Task | Skill to Use |
 |------|--------------|
 | Writing new page copy from scratch | copywriting |
-| Reviewing and improving existing copy | copy-editing (this skill) |
+| Writing new blog posts | contentwriting |
+| Reviewing and improving landing page copy | copy-editing (this skill) - full sweeps |
+| Reviewing and improving blog posts | copy-editing (this skill) - adapted sweeps |
 | Editing copy you just wrote | copy-editing (this skill) |
 | Structural or strategic page changes | page-cro |
