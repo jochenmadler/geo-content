@@ -13,7 +13,7 @@ description: "When the user wants to edit, review, or improve existing marketing
 - **Customer folder**: first path segment of `$ARGUMENTS` (e.g. `hyperspell`)
 - **Context file**: glob `{customer-folder}/company-context-*.md` — read and apply brand voice, customer language, etc. If not found, warn the user and suggest running `/company-context` first.
 - **Output naming**: replace `-draft.md` with `-edited.md` in the filename. If the file does not end with `-draft.md`, append `-edited` before the extension.
-- **Next step**: Tell the user: "Run `/humanize {output-path}` next."
+- **Next step**: Tell the user: "Run `/refine {output-path}` next."
 
 ---
 
@@ -525,6 +525,7 @@ This iterative process ensures each edit doesn't create new problems while respe
 
 - **copywriting**: For writing new landing page/marketing copy from scratch
 - **contentwriting**: For writing blog posts and educational content
+- **refine**: For blog post refinement (accuracy, voice, de-AI) after contentwriting
 - **company-context**: For establishing brand voice and context (read by this skill automatically)
 
 ---

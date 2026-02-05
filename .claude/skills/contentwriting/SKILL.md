@@ -1,6 +1,6 @@
 ---
 name: contentwriting
-version: 3.1.0
+version: 3.2.0
 argument-hint: "<briefing-path> [word-count] e.g. hyperspell/Hyperspell - 2.md 3000"
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with company-context for company voice and tone.
 ---
@@ -16,7 +16,7 @@ description: When the user wants to write a blog post from a content briefing. U
 - **Output**: `{customer-folder}/articles/{slug}-draft.md`
   - Slug is derived from the article's H1: lowercase, special chars removed, spaces → hyphens, max 60 chars
   - Create the `articles/` subdirectory if it does not exist
-- **Next step**: Tell the user: "Run `/copy-editing {output-path}` next."
+- **Next step**: Tell the user: "Run `/refine {output-path}` next."
 
 ---
 
@@ -159,8 +159,9 @@ The article should read like the named author wrote it, not like a generic conte
 1. **Read the company-context's Voice & Tone patterns and Core Messaging** before outlining. Internalize the mental model, not just the vocabulary.
 2. **Frame the entire topic through the company's worldview.** If the company frames problems as architectural/systemic, the article should reason at that level. If they use historical analogies, the article should too. If they are opinion-forward, take clear positions rather than hedging.
 3. **Use "How customers describe the problem" phrases** (from company-context Section 5) to ground the article in real pain. These phrases make the opening and problem sections feel authentic.
-4. **Apply the company's preferred argument structure** to how sections build on each other. For example, if the company favors "problem-first" framing, lead every section with the pain before presenting the solution. If they favor "paradigm shift" framing, establish old-vs-new thinking. If they favor "builder credibility," show working code or concrete implementation details.
-5. **Mirror the author's reasoning style.** If the company-context reveals they think in first principles, structure arguments that way. If they reason by analogy, use analogies. The reader should feel a consistent intellectual personality throughout.
+4. **Weave in proof points as evidence.** Check company-context Section 5 for proof points (customer quotes, metrics, case study references). Where the article makes a claim that a proof point could support, integrate it naturally — as evidence, not as a testimonial. Example: "Teams using this approach report going from concept to paid pilots in 48 hours" grounds an abstract claim about shipping speed in a real result. Use 1-2 proof points per article; more feels promotional.
+5. **Apply the company's preferred argument structure** to how sections build on each other. For example, if the company favors "problem-first" framing, lead every section with the pain before presenting the solution. If they favor "paradigm shift" framing, establish old-vs-new thinking. If they favor "builder credibility," show working code or concrete implementation details.
+6. **Write with the author's personal authority.** If the briefing names an author, adopt their perspective — not as a costume, but as a lens. Use "we" when sharing company experience ("At Hyperspell, we found that..."). Include company-specific examples alongside hypothetical ones. Where the company-context reveals reasoning patterns (first principles, analogies, paradigm-shift framing), use them. The reader should feel a specific person's intellectual personality, not a synthesized overview.
 
 ---
 
@@ -402,6 +403,13 @@ Example: "According to IQVIA, specialty drug spending reached $301 billion in 20
 - For self-reported data (from company websites), note this clearly
 - Verify claims can be supported by the cited source
 
+### Source Integrity
+
+- **Never fabricate citations.** Only cite sources that are: (a) listed in the briefing, (b) found in the company-context, or (c) verified via web search during writing. If you recall a source but cannot verify it exists, insert a `[VERIFY: brief description]` placeholder for the user to confirm.
+- **Every citation needs a URL** when one exists. If no URL is available (e.g., paywalled research), note this in the Sources section.
+- **Weave briefing sources into the body.** If the briefing lists specific sources, competitor benchmarks, or research to cite, integrate them at the most relevant points in the text. Don't save them all for the Sources section — reference them where they support claims, build credibility, or create associative linking.
+- **Competitor benchmarks as credibility anchors.** When the briefing names competitor content (e.g., "Anthropic's guide on effective agents"), reference it by name in the body where it strengthens the argument. This builds authority and creates entity associations for GEO.
+
 ### Sources Section
 At the end of the post, include a Sources section:
 
@@ -480,6 +488,7 @@ When working from a content briefing:
 - Use competitor insights to ensure coverage, not to copy structure
 - Fill identified content gaps
 - Differentiate through depth, examples, or perspective
+- When the briefing names specific competitor content (articles, reports, tools), reference them by name in the article where they add credibility or context — this builds authority and GEO entity associations
 
 ### Required Elements
 - Cover all sections marked as required
