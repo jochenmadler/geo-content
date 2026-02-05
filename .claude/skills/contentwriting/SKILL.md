@@ -1,7 +1,7 @@
 ---
 name: contentwriting
-version: 3.0.0
-argument-hint: "<briefing-path> e.g. hyperspell/Hyperspell - 2.md"
+version: 3.1.0
+argument-hint: "<briefing-path> [word-count] e.g. hyperspell/Hyperspell - 2.md 3000"
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with company-context for company voice and tone.
 ---
 
@@ -9,7 +9,8 @@ description: When the user wants to write a blog post from a content briefing. U
 
 ## Arguments and Output Convention
 
-- **`$ARGUMENTS`** = path to the content briefing file (e.g. `hyperspell/Hyperspell - 2.md`)
+- **`$ARGUMENTS`** = `<briefing-path> [word-count]` (e.g. `hyperspell/Hyperspell - 2.md 3000`)
+- **Word count precedence**: briefing's specified word count > CLI argument > default 2000-4000
 - **Customer folder**: first path segment of `$ARGUMENTS` (e.g. `hyperspell`)
 - **Context file**: glob `{customer-folder}/company-context-*.md` — read and apply brand voice, customer language, etc. If not found, warn the user and suggest running `/company-context` first.
 - **Output**: `{customer-folder}/articles/{slug}-draft.md`
@@ -42,7 +43,7 @@ Find the context file by globbing `{customer-folder}/company-context-*.md`. If i
 | **Content Sensitivities** (Section 6) | Follow product mention guidelines. Respect regulatory constraints and taboos. |
 | **Content Language & Localization** (Section 7) | Match the primary language, formal/informal address, and spelling convention. |
 
-If no context file exists, ask the user to run `/company-context` first, or gather essential voice/positioning info before proceeding.
+If no context file exists, ask the user to run `/company-context` first. If no context file exists and no briefing is provided, ask the user for formality level and brand personality before writing.
 
 ### 1.2 Load Content Briefing
 
@@ -149,6 +150,20 @@ Place CTAs:
 
 ---
 
+## Persona-Aligned Framing
+
+The article should read like the named author wrote it, not like a generic content writer matched their tone. Go beyond surface-level voice: adopt the company's worldview.
+
+### How to Apply
+
+1. **Read the company-context's Voice & Tone patterns and Core Messaging** before outlining. Internalize the mental model, not just the vocabulary.
+2. **Frame the entire topic through the company's worldview.** If the company frames problems as architectural/systemic, the article should reason at that level. If they use historical analogies, the article should too. If they are opinion-forward, take clear positions rather than hedging.
+3. **Use "How customers describe the problem" phrases** (from company-context Section 5) to ground the article in real pain. These phrases make the opening and problem sections feel authentic.
+4. **Apply the company's preferred argument structure** to how sections build on each other. For example, if the company favors "problem-first" framing, lead every section with the pain before presenting the solution. If they favor "paradigm shift" framing, establish old-vs-new thinking. If they favor "builder credibility," show working code or concrete implementation details.
+5. **Mirror the author's reasoning style.** If the company-context reveals they think in first principles, structure arguments that way. If they reason by analogy, use analogies. The reader should feel a consistent intellectual personality throughout.
+
+---
+
 ## Writing Style Rules
 
 ### Core Principles
@@ -173,7 +188,22 @@ For thorough line-by-line review, use the **copy-editing** skill after your draf
 
 ---
 
-## Blog Post Structure
+## Step 2: Follow the Briefing Outline
+
+If the briefing includes a **Content Outline**, use it as the article's skeleton:
+
+- Each H2/H3 in the outline becomes an H2/H3 in the article.
+- Follow the section order as given.
+- Follow section-level instructions (e.g., "one paragraph, not a pitch," "include a comparison table").
+- Respect per-section word counts when specified.
+
+The generic **Blog Post Structure** section below applies only when no outline is provided.
+
+---
+
+## Blog Post Structure (Fallback)
+
+Use this structure only when the briefing does **not** include a Content Outline.
 
 ### Opening (100-200 words)
 
@@ -455,29 +485,6 @@ When working from a content briefing:
 - Cover all sections marked as required
 - Include all specified sources
 - Address all listed questions/objections
-
----
-
-## Voice and Tone
-
-**Primary source:** Pull from the context file discovered via `{customer-folder}/company-context-*.md` (Brand Voice section).
-
-If no context file exists, establish before writing:
-
-**Formality level:**
-- Casual/conversational
-- Professional but friendly
-- Formal/enterprise
-
-**Brand personality:**
-- Playful or serious?
-- Bold or understated?
-- Technical or accessible?
-
-**Adaptation for blog content:**
-- Blog posts can be slightly more conversational than landing pages
-- Educational content allows for more explanation and examples
-- Maintain brand voice while adapting to the informational context
 
 ---
 
