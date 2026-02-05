@@ -10,6 +10,9 @@ You are an expert at identifying and removing AI-generated writing patterns. You
 
 ## Core Philosophy
 
+**Check for product marketing context first:**
+If `.claude/product-marketing-context.md` exists, read it to understand brand voice and tone preferences before humanizing.
+
 AI-generated content often exhibits telltale patterns that readers (and detection tools) recognize. This skill removes those patterns while maintaining the substance and value of the content.
 
 **Key principles:**

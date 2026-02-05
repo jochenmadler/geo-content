@@ -431,9 +431,8 @@ This iterative process ensures each edit doesn't create new problems while respe
 ## Related Skills
 
 - **copywriting**: For writing new copy from scratch (use this skill to edit after your first draft is complete)
-- **page-cro**: For broader page optimization beyond copy
-- **marketing-psychology**: For understanding why certain edits improve conversion
-- **ab-test-setup**: For testing copy variations
+- **contentwriting**: For blog posts and educational content
+- **humanize**: For removing AI patterns and adding natural tone
 
 ---
 

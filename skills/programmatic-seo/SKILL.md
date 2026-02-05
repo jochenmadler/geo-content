@@ -232,5 +232,5 @@ Watch for: Thin content warnings, Ranking drops, Manual actions, Crawl errors
 ## Related Skills
 
 - **seo-audit**: For auditing programmatic pages after launch
-- **schema-markup**: For adding structured data
-- **competitor-alternatives**: For comparison page frameworks
+- **contentwriting**: For writing individual page content
+- **copy-editing**: For improving page copy quality

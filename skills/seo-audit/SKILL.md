@@ -389,6 +389,5 @@ Same format as above
 ## Related Skills
 
 - **programmatic-seo**: For building SEO pages at scale
-- **schema-markup**: For implementing structured data
-- **page-cro**: For optimizing pages for conversion (not just ranking)
-- **analytics-tracking**: For measuring SEO performance
+- **contentwriting**: For creating SEO-optimized blog content
+- **copy-editing**: For improving on-page copy quality
