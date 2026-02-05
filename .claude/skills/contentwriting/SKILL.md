@@ -1,6 +1,6 @@
 ---
 name: contentwriting
-version: 3.3.0
+version: 3.6.0
 argument-hint: "<briefing-path> [word-count] e.g. hyperspell/Hyperspell - 2.md 3000"
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with company-context for company voice and tone.
 ---
@@ -53,12 +53,6 @@ The user should provide a content briefing that includes:
 - Competitor analysis and content gaps
 - Required sections and topics to cover
 - Sources to cite
-
-The briefing may also specify GEO-specific elements. Look for and apply:
-- **Comparison table targets**: Which concepts to compare (e.g., "context engineering vs prompt engineering vs RAG")
-- **Named frameworks**: Original models or methodologies the article should introduce and name
-- **Target FAQ questions**: "People Also Ask" questions from PAA research
-- **Entity association targets**: Which topics should be explicitly linked to the company name
 
 ### 1.3 If No Briefing Provided
 
@@ -425,11 +419,13 @@ Cover what AI models expect for comprehensive answers:
 ## Source Citation
 
 ### Inline Citations
-When referencing external data or claims:
+When referencing external data or claims, **always hyperlink the source name to its URL** using markdown link syntax:
 
-Format: "According to [Source Name], [claim]." or "[Claim] ([Source Name])."
+Format: `"According to [Source Name](URL), [claim]."` or `"[Claim] ([Source Name](URL))."`
 
-Example: "According to IQVIA, specialty drug spending reached $301 billion in 2023."
+Example: `"According to [IQVIA](https://www.iqvia.com/insights/the-institute/reports/drug-expenditures-2023), specialty drug spending reached $301 billion in 2023."`
+
+Every source mentioned in the body text must be a clickable link. If no URL exists (e.g., paywalled research), use plain text and note the missing URL in the Sources section.
 
 ### Source Requirements
 - Cite original sources when possible, not secondary reporting
@@ -440,7 +436,7 @@ Example: "According to IQVIA, specialty drug spending reached $301 billion in 20
 ### Source Integrity
 
 - **Never fabricate citations.** Only cite sources that are: (a) listed in the briefing, (b) found in the company-context, or (c) verified via web search during writing. If you recall a source but cannot verify it exists, insert a `[VERIFY: brief description]` placeholder for the user to confirm.
-- **Every citation needs a URL** when one exists. If no URL is available (e.g., paywalled research), note this in the Sources section.
+- **Every citation needs a URL** when one exists. Inline citations must be hyperlinked in the body text. The Sources section at the end repeats the full reference for completeness. If no URL is available (e.g., paywalled research), note this in the Sources section.
 - **Weave briefing sources into the body.** If the briefing lists specific sources, competitor benchmarks, or research to cite, integrate them at the most relevant points in the text. Don't save them all for the Sources section — reference them where they support claims, build credibility, or create associative linking.
 - **Competitor benchmarks as credibility anchors.** When the briefing names competitor content (e.g., "Anthropic's guide on effective agents"), reference it by name in the body where it strengthens the argument. This builds authority and creates entity associations for GEO.
 
@@ -540,7 +536,44 @@ When working from a content briefing:
 
 ### Blog Post Markdown
 
+All metadata is stored as YAML frontmatter at the top of the file. This is machine-readable, supported by every static site generator and CMS, and consumed by downstream skills (`/refine`, `/publish`, `/framer`).
+
+Populate the frontmatter from the content briefing. Use the briefing's exact values for keyword, slug, and intent fields rather than inventing new ones.
+
+| YAML field | Where to get it |
+|---|---|
+| `title` | Briefing H1 |
+| `slug` | Briefing "Target slug" if provided, otherwise derive from H1 |
+| `author` | Briefing "Author" field, fall back to company-context Section 8 default author |
+| `date` | Today's date (YYYY-MM-DD) |
+| `format` | Briefing "Format" field (e.g. pillar_post, long_form_guide, comparison, how_to) |
+| `category` | Derive from briefing topic or primary keyword |
+| `tags` | Combine primary + secondary keywords, plus topic terms |
+| `seo.primaryKeyword` | Briefing "Primary keyword" or first item in "Target queries" |
+| `seo.secondaryKeywords` | Briefing "Secondary keywords" or remaining "Target queries" |
+| `seo.searchIntent` | Briefing "Search intent" or derive from "Funnel stage" |
+| `seo.searchVolume` | Briefing "Search volume" if provided, otherwise omit |
+| `seo.metaTitle` | Write fresh: 50-60 chars, includes primary keyword |
+| `seo.metaDescription` | Write fresh: 150-160 chars, includes primary keyword |
+
 ```markdown
+---
+title: "[H1 from briefing]"
+slug: "[briefing target slug, or derived from H1]"
+author: "[Author from briefing or company-context default]"
+date: "[YYYY-MM-DD]"
+format: "[pillar_post | long_form_guide | comparison | how_to | listicle | case_study]"
+category: "[Category]"
+tags: ["tag1", "tag2", "tag3"]
+seo:
+  metaTitle: "[50-60 chars, includes primary keyword]"
+  metaDescription: "[150-160 chars, includes primary keyword, clear value prop]"
+  primaryKeyword: "[keyword from briefing]"
+  secondaryKeywords: ["kw1", "kw2", "kw3"]
+  searchIntent: "[informational | commercial | comparison | navigational]"
+  searchVolume: "[monthly volume if known, e.g. 12100]"
+---
+
 # [H1 Title - includes primary keyword]
 
 [Opening: hook, context, promise — address user intent in first 50-70 words]
@@ -591,29 +624,15 @@ When working from a content briefing:
 - [Citations in format specified above]
 ```
 
-### Meta Content
-
-Provide separately:
-```
-Meta Title: [50-60 characters]
-Meta Description: [150-160 characters]
-Primary Keyword: [keyword]
-Secondary Keywords: [list]
-```
-
-### Publication Notes
-
-Include when relevant:
-- Suggested publication date
-- Internal linking opportunities
-- Related content to reference
-- Images/graphics needed (describe, don't create)
+Do **not** add any meta content, publication notes, or changelog after the Sources section. All metadata lives in the frontmatter. The article body ends with Sources.
 
 ---
 
 ## Related Skills
 
-- **copy-editing**: For polishing the draft after writing
+- **refine**: For polishing the draft after writing
+- **publish**: For generating JSON-LD structured data from a refined article
+- **copy-editing**: For marketing copy and landing page editing
 - **copywriting**: For landing page and marketing page copy
 - **company-context**: For establishing brand voice and context
 - **seo-audit**: For technical SEO review of published content

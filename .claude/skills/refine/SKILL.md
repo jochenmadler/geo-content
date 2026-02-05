@@ -1,6 +1,6 @@
 ---
 name: refine
-version: 1.1.0
+version: 1.3.0
 argument-hint: "<article-path> e.g. hyperspell/articles/context-engineering-draft.md"
 description: "When the user wants to refine a blog post draft. Use when the user says 'refine this,' 'polish this draft,' 'check for AI patterns,' 'verify sources,' or 'make this production-ready.' Runs after contentwriting to verify accuracy, check voice consistency, and remove AI generation artifacts."
 ---
@@ -13,7 +13,7 @@ description: "When the user wants to refine a blog post draft. Use when the user
 - **Customer folder**: first path segment of `$ARGUMENTS` (e.g. `hyperspell`)
 - **Context file**: glob `{customer-folder}/company-context-*.md` — read and apply brand voice, customer language, etc. If not found, warn the user and suggest running `/company-context` first.
 - **Output naming**: replace `-draft.md` with `-final.md` in the filename. If the file does not end with `-draft.md`, append `-final` before the extension.
-- **Next step**: Tell the user: "Run `/framer {output-path}` (or `/webflow`, `/wordpress`) to format for publishing."
+- **Next step**: Tell the user: "Run `/publish {output-path}` to generate structured data, then `/framer {output-path}` (or `/webflow`, `/wordpress`) to format for publishing."
 
 ---
 
@@ -30,7 +30,7 @@ Find the context file by globbing `{customer-folder}/company-context-*.md`. If i
 - Apply clear-cut fixes directly (terminology swaps, citation formatting, pattern breaking)
 - Flag ambiguous issues as comments for user review
 - Keep word count within 10% of original
-- Append a changelog listing significant changes and rationale
+- Preserve any YAML frontmatter from the draft. Update `dateModified` if present.
 
 ---
 
@@ -180,7 +180,7 @@ See [Plain English Alternatives](references/plain-english-alternatives.md) for a
 
 - **Refinement, not rewriting**: Preserve 90%+ of the original text.
 - **Word count**: Final output within 10% of original word count.
-- **Changelog**: Append a brief changelog at the end of the output file listing significant changes and rationale.
+- **No changelog**: Do not produce a changelog, neither in the -final.md nor as a separate file.
 
 ---
 
@@ -207,18 +207,10 @@ Before delivering the refined article, verify against this checklist:
 
 ## Output Format
 
-Save the refined article to the output path described in Arguments and Output Convention above. The output should be the complete refined article in markdown, with a changelog appended:
+Save the refined article to the output path described in Arguments and Output Convention above. The output should be the complete refined article in markdown:
 
 ```markdown
-[Full refined article...]
-
----
-
-## Changelog
-
-- [Change]: [Rationale]
-- [Change]: [Rationale]
-...
+[Full refined article — clean, publication-ready, no internal sections]
 ```
 
 ---
@@ -234,4 +226,5 @@ Save the refined article to the output path described in Arguments and Output Co
 - **contentwriting**: Write blog posts (use refine after)
 - **copy-editing**: For marketing copy and landing page editing (full seven sweeps)
 - **company-context**: For establishing brand voice and context (read by this skill automatically)
+- **publish**: For generating JSON-LD structured data from the refined article
 - **framer**: For formatting the refined article for Framer CMS publishing

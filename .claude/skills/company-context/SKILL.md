@@ -1,6 +1,6 @@
 ---
 name: company-context
-version: 2.0.0
+version: 2.1.0
 argument-hint: "<company-name> <website-url> e.g. hyperspell https://hyperspell.com"
 description: "When the user wants to create or update their content context document. Also use when the user mentions 'company context,' 'content context,' 'marketing context,' 'set up context,' 'positioning,' or wants to capture brand voice and positioning. Discovers voice, tone, and terminology from the company's website. Creates `{customer-folder}/company-context-{domain}.md` that other writing skills reference."
 ---
@@ -21,8 +21,8 @@ The document is stored at `{customer-folder}/company-context-{domain}.md` — in
 2. **Website URL** — if not provided, ask for it. Needed for discovery.
 3. **Customer folder** — if a folder for this brand already exists, use it. If not, create one.
 4. **Check for existing context file** — look for `{customer-folder}/company-context-*.md`
-   - **If it exists in the new 7-section format:** Read it, summarize what's captured, ask which sections to update. Only re-gather info for those sections.
-   - **If it exists in the old 12-section format** (sections like "Switching Dynamics", "Objections & Anti-Personas", "Goals"): Offer to migrate it to the new 7-section format, preserving relevant information.
+   - **If it exists in the new 8-section format:** Read it, summarize what's captured, ask which sections to update. Only re-gather info for those sections.
+   - **If it exists in an old format** (e.g., 12-section with "Switching Dynamics", "Objections & Anti-Personas", "Goals"; or 7-section without Section 8): Offer to migrate it to the new 8-section format, preserving relevant information.
    - **If it doesn't exist:** Proceed to Step 1.
 
 The output file will be: `{customer-folder}/company-context-{domain}.md`
@@ -39,6 +39,8 @@ Fetch the homepage. Extract:
 - **Language(s)** — detect from URL paths (`/de`, `/en`), `hreflang` tags, language switchers, `<html lang="...">`
 - **Company description** — hero text, tagline, meta description
 - **Footer links** — about, blog, legal, social
+- **Logo URL** — look for `<img>` in the header/nav, or an Open Graph image (`og:image`)
+- **Social profile links** — extract URLs from footer social icons (LinkedIn, Twitter/X, GitHub, etc.)
 
 **If multi-language site:** Ask the user which language to target for the content context. Use that language version for all subsequent fetches.
 
@@ -110,12 +112,13 @@ From website structure and content, infer:
 
 ### Step 6: Draft & Validate
 
-Present the full 7-section draft to the user. Then ask specifically:
+Present the full 8-section draft to the user. Then ask specifically:
 
 1. "Does this voice description sound like you?"
 2. "Any terms or phrases missing from the glossary?"
 3. "Any topics that are sensitive or off-limits?"
-4. "Anything else to capture?"
+4. "Who is the default blog author? (name, role, profile URL)"
+5. "Anything else to capture?"
 
 Iterate until the user is satisfied.
 
@@ -138,7 +141,7 @@ Tell the user: "Other writing skills will now use this context automatically. Ru
 | No blog found | Use about page for voice; flag "limited voice signal" |
 | No about page found | Use homepage copy; ask user to fill gaps |
 | Sparse single-page site | Extract what's available; ask user for reference writing |
-| Old-format context file exists | Offer to migrate to new 7-section format |
+| Old-format context file exists | Offer to migrate to new 8-section format |
 
 ---
 
@@ -220,6 +223,16 @@ The final document must follow this structure exactly:
 **Formal/informal address:** {e.g., "Sie" not "du" / "you" conversationally}
 **Spelling convention:** {American English / British English / Swiss German / etc.}
 **Localization notes:** {region-specific conventions}
+
+## 8. Structured Data & Publishing
+**Blog base URL:** {e.g., https://hyperspell.com/blog}
+**Default author:**
+- Name: {author name}
+- Role: {e.g., Founder, CTO}
+- URL: {author profile URL or about page}
+**Organization logo URL:** {URL to logo image}
+**Social profiles:**
+- {platform}: {URL}
 ```
 
 ---
