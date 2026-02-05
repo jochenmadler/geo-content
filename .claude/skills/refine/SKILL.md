@@ -1,6 +1,6 @@
 ---
 name: refine
-version: 1.0.0
+version: 1.1.0
 argument-hint: "<article-path> e.g. hyperspell/articles/context-engineering-draft.md"
 description: "When the user wants to refine a blog post draft. Use when the user says 'refine this,' 'polish this draft,' 'check for AI patterns,' 'verify sources,' or 'make this production-ready.' Runs after contentwriting to verify accuracy, check voice consistency, and remove AI generation artifacts."
 ---
@@ -76,6 +76,17 @@ This is a checklist audit, not creative work.
 
 - Verify company data is labeled as self-reported.
 - Check for marketing claims presented as verified facts.
+
+### GEO Structural Audit
+
+Verify that contentwriting included the required GEO elements. Flag any that are missing.
+
+- **Answer capsules**: Check that every question-framed H2 has a 20-25 word definition/answer as its first sentence, with no links in the capsule. Flag each H2 that is missing a capsule.
+- **Comparison table**: Check that at least one comparison table exists in the article. Flag if missing entirely.
+- **FAQ section**: Check for a "Frequently Asked Questions" (or "FAQ" / "People Also Ask") H2 section with 3-5 Q&A pairs (question as H3, 40-60 word answer below). Flag if missing.
+- **Key Takeaways**: Check for a "Key Takeaways" section with 5-7 bulleted summary items. Flag if missing.
+- **Named frameworks**: If the article introduces an original concept, model, or methodology, check that it has a clear name and is presented in both prose and structured (table/list) format. Flag if only in prose.
+- **Entity naming density**: Count company name mentions in the body text. Flag if fewer than 5 in a 2000+ word article. Check that mentions appear in the definition section, framework section, practical examples, and conclusion. Flag missing positions.
 
 ---
 
@@ -186,6 +197,11 @@ Before delivering the refined article, verify against this checklist:
 - [ ] No em-dashes or exclamation points
 - [ ] Content reads naturally aloud
 - [ ] Word count within 10% of original
+- [ ] Answer capsules present after question-framed H2s
+- [ ] At least one comparison table
+- [ ] FAQ section with 3-5 Q&A pairs
+- [ ] Key Takeaways summary
+- [ ] Company name appears 5+ times in strategic positions
 
 ---
 

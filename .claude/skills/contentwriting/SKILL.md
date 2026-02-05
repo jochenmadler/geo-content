@@ -1,6 +1,6 @@
 ---
 name: contentwriting
-version: 3.2.0
+version: 3.3.0
 argument-hint: "<briefing-path> [word-count] e.g. hyperspell/Hyperspell - 2.md 3000"
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with company-context for company voice and tone.
 ---
@@ -53,6 +53,12 @@ The user should provide a content briefing that includes:
 - Competitor analysis and content gaps
 - Required sections and topics to cover
 - Sources to cite
+
+The briefing may also specify GEO-specific elements. Look for and apply:
+- **Comparison table targets**: Which concepts to compare (e.g., "context engineering vs prompt engineering vs RAG")
+- **Named frameworks**: Original models or methodologies the article should introduce and name
+- **Target FAQ questions**: "People Also Ask" questions from PAA research
+- **Entity association targets**: Which topics should be explicitly linked to the company name
 
 ### 1.3 If No Briefing Provided
 
@@ -348,6 +354,48 @@ Optimize for AI systems (ChatGPT, Perplexity, Claude, Google AI Overviews) to ci
 - **Authoritativeness:** Reference authoritative sources, use industry terminology correctly
 - **Trustworthiness:** Be transparent about limitations, cite sources, avoid hyperbole
 
+### Answer Capsules (Highest Impact)
+After every question-framed H2 (e.g., "What Is Context Engineering?"), place a **20-25 word definition or answer as the first sentence**. This capsule must:
+- Directly answer the heading's question
+- Be self-contained (no links, no references to other sections)
+- Use "[Term] is..." or "[Term] refers to..." format
+
+72.4% of LLM-cited posts use this pattern. It is the single highest-impact GEO technique.
+
+### Named Frameworks
+If the article introduces an original model, framework, or methodology:
+- Give it a clear, memorable name (e.g., "The Four Layers of Agent Context")
+- Present it in **both** prose and structured (table or list) format for dual extraction paths
+- Named frameworks are among the highest-leverage GEO assets because they are uniquely citable and brandable
+
+### Comparison Tables (Required)
+Every article that distinguishes concepts (vs, differences, types, approaches) **must** include at least one comparison table. Tables are 40% more likely to be cited by AI systems than prose descriptions. If the briefing specifies comparison targets, use them. Otherwise, identify the article's natural "X vs Y" distinction and table it.
+
+### FAQ Section (Required)
+Add a "Frequently Asked Questions" H2 section near the end of the article with 3-5 questions:
+- Use the question as an H3 heading
+- Answer directly in 40-60 words below each question
+- Draw questions from PAA research in the briefing, or anticipate the most common follow-up questions
+- Pages with FAQ content are 3.2x more likely to appear in AI Overviews
+
+### Key Takeaways (Required)
+Add a "Key Takeaways" H2 section before the Sources section:
+- 5-7 bulleted items summarizing the article's main points
+- Each bullet should be a self-contained, extractable statement
+- Bulleted summaries are preferred extraction targets for AI systems
+
+### Entity Naming (5-7 Mentions)
+Use the company name **5-7 times** in a 2000-word article, in these strategic positions:
+- Definition section (tying the company to the core concept)
+- Framework discussion (connecting the company to the methodology)
+- Practical examples ("At [Company], we..." or "[Company]'s approach...")
+- Conclusion
+
+Frame mentions naturally as "we at [Company]" or "[Company]'s approach." Not promotional, but consistent enough to build entity associations in AI training data.
+
+### Paragraph Length for GEO
+Keep paragraphs to **40-60 words** (2-3 sentences) for optimal AI extraction. One idea per paragraph. Longer paragraphs reduce the likelihood of clean extraction by AI systems.
+
 ### Quotability Optimization
 Write statements that AI can extract and cite:
 - **Definitive statements:** "X is defined as..." or "The primary benefit of X is..."
@@ -357,12 +405,6 @@ Write statements that AI can extract and cite:
 
 Avoid vague or hedged language that AI systems skip over.
 
-### Entity Establishment
-- Name the company/product consistently (don't alternate between variations)
-- Describe what the company does in clear, factual terms
-- Connect the company to relevant industry categories and topics
-- Build entity associations through consistent terminology
-
 ### Source Diversity
 Mix citation types to build trust signals:
 - Industry reports and research studies
@@ -370,14 +412,6 @@ Mix citation types to build trust signals:
 - Expert quotes (named individuals with credentials)
 - Company data (clearly labeled as such)
 - Academic sources where relevant
-
-### Structured Content Patterns
-Use formats that AI systems parse well:
-- **FAQ sections:** Question as header, direct answer below
-- **Definition blocks:** "What is [X]?" followed by clear definition
-- **Step-by-step lists:** Numbered procedures with clear outcomes
-- **Comparison tables:** Structured data AI can extract
-- **Key takeaways:** Bulleted summaries of main points
 
 ### Semantic Completeness
 Cover what AI models expect for comprehensive answers:
@@ -447,10 +481,15 @@ Before delivering the final post, verify against this checklist:
 - [ ] Internal linking opportunities noted
 
 ### GEO Checklist
+- [ ] Answer capsules present after question-framed H2s (20-25 words, no links)
+- [ ] At least one comparison table included
+- [ ] FAQ section with 3-5 Q&A pairs
+- [ ] Key Takeaways section with 5-7 bulleted items
+- [ ] Named framework presented in both prose and table/list format (if applicable)
+- [ ] Company name appears 5-7 times in strategic positions
+- [ ] Paragraphs are 40-60 words (2-3 sentences)
 - [ ] Contains quotable, extractable statements
 - [ ] Includes specific data points with sources
-- [ ] FAQ or definition sections present (if appropriate)
-- [ ] Entity (company/product) named consistently
 - [ ] E-E-A-T signals present (expertise, sources, examples)
 
 ### Brand Voice Consistency
@@ -469,7 +508,7 @@ Before delivering the final post, verify against this checklist:
 ### Readability
 - [ ] No jargon that would confuse the target reader
 - [ ] Sentences are concise (no run-ons)
-- [ ] Paragraphs are short (3-4 sentences max)
+- [ ] Paragraphs are 40-60 words (2-3 sentences)
 - [ ] Active voice predominates
 - [ ] No exclamation points or em-dashes
 
@@ -504,9 +543,11 @@ When working from a content briefing:
 ```markdown
 # [H1 Title - includes primary keyword]
 
-[Opening: hook, context, promise]
+[Opening: hook, context, promise — address user intent in first 50-70 words]
 
-## [H2 Section Title]
+## [Question-Framed H2 Section Title]
+
+[Answer capsule: 20-25 word definition/answer, no links]
 
 [Section content...]
 
@@ -518,13 +559,32 @@ When working from a content briefing:
 
 [Section content...]
 
+| [Comparison Table — at least one per article] |
+|---|
+
 [Continue for all sections...]
 
-## Conclusion
+## Frequently Asked Questions
 
-[Summary and next steps]
+### [Question 1]?
 
----
+[Direct 40-60 word answer]
+
+### [Question 2]?
+
+[Direct 40-60 word answer]
+
+### [Question 3]?
+
+[Direct 40-60 word answer]
+
+## Key Takeaways
+
+- [Takeaway 1 — self-contained, extractable statement]
+- [Takeaway 2]
+- [Takeaway 3]
+- [Takeaway 4]
+- [Takeaway 5]
 
 ## Sources
 
