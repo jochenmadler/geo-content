@@ -546,7 +546,7 @@ Populate the frontmatter from the content briefing. Use the briefing's exact val
 | `title` | Briefing H1 |
 | `slug` | Briefing "Target slug" if provided, otherwise derive from H1 |
 | `author` | Briefing "Author" field, fall back to company-context Section 8 default author |
-| `date` | Today's date (YYYY-MM-DD) |
+| `date` | Briefing "Publishing date" if provided; otherwise run `date +%Y-%m-%d` to get the current system date |
 | `format` | Briefing "Format" field (e.g. pillar_post, long_form_guide, comparison, how_to) |
 | `category` | Derive from briefing topic or primary keyword |
 | `tags` | Combine primary + secondary keywords, plus topic terms |
