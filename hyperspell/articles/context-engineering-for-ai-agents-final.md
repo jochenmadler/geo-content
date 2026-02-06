@@ -16,7 +16,7 @@ seo:
 
 # Context Engineering for AI Agents: The Missing Layer Between Prompts and Memory
 
-Your AI agent has access to GPT-4, Claude, or any frontier model. A user asks it to "reschedule my 3pm with Sarah to next week." The agent can parse natural language, understand intent, and generate polished responses.
+Your AI agent has access to GPT-5, Claude, or any frontier model. A user asks it to "reschedule my 3pm with Sarah to next week." The agent can parse natural language, understand intent, and generate polished responses.
 
 It also has no idea who Sarah is, which meeting you mean, what your calendar looks like, or when you're free next week. So it asks you. For all of it.
 

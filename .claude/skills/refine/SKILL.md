@@ -1,6 +1,6 @@
 ---
 name: refine
-version: 1.3.0
+version: 1.4.0
 argument-hint: "<article-path> e.g. hyperspell/articles/context-engineering-draft.md"
 description: "When the user wants to refine a blog post draft. Use when the user says 'refine this,' 'polish this draft,' 'check for AI patterns,' 'verify sources,' or 'make this production-ready.' Runs after contentwriting to verify accuracy, check voice consistency, and remove AI generation artifacts."
 ---
@@ -56,6 +56,30 @@ This is a checklist audit, not creative work.
 
 - Flag unsourced numbers.
 - Verify that cited numbers match what the source actually says (where verifiable).
+
+### Currency Check (Temporal Accuracy)
+
+The model's training data has a knowledge cutoff. Claims that were accurate at training time may be stale by publication date. This check catches them before readers do.
+
+**Scan the article for these time-sensitive patterns:**
+
+| Pattern | Examples | What to verify |
+|---------|----------|----------------|
+| Named versions | "GPT-4," "Claude 3," "React 18," "iOS 17," "Python 3.11" | Is this still the current/relevant version, or has a successor launched? |
+| Superlatives implying currency | "the largest context window," "the leading framework," "the most-used library" | Still true today? |
+| Current role holders | "CEO of X," "President of Y," "head coach of Z" | Still in that role? |
+| Unpinned statistics | "has 2M users," "market worth $5B" (no year attached) | Current? Pin to a year and source, or remove. |
+| Records and rankings | "#1 provider," "world's fastest," "most-cited paper" | Still accurate? |
+| Recency qualifiers on specific things | "recently launched X," "the latest Y," "emerging Z" | Still recent/emerging, or now established/outdated? |
+
+**For each detected instance:**
+
+1. **Web search** to verify current accuracy.
+2. **If stale** → update with current information. Add a source citation if one was found.
+3. **If unverifiable** → flag with `<!-- [CURRENCY: unable to verify "{claim}" — check before publishing] -->`.
+4. **If pinned to a date** → leave as-is. A claim like "GPT-4 launched in March 2023" is historical fact, not a currency issue. A claim like "frontier models like GPT-4" implies currency and needs checking.
+
+**Key distinction:** The trigger is *implied currency*, not the mere presence of a name or number. "We tested on GPT-4" (past tense, specific test) is fine. "Your agent runs on GPT-4 or Claude" (present tense, implies these are current) needs verification.
 
 ### Terminology Compliance
 
@@ -189,6 +213,7 @@ See [Plain English Alternatives](references/plain-english-alternatives.md) for a
 Before delivering the refined article, verify against this checklist:
 
 - [ ] All sources have author/org, title, year, and URL (or are flagged for user)
+- [ ] Time-sensitive claims verified via web search (versions, superlatives, role holders, unpinned stats)
 - [ ] No forbidden words from company-context
 - [ ] Product mentions follow company-context guidelines
 - [ ] Tone matches company-context Voice & Tone section
