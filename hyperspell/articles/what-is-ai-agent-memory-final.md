@@ -12,6 +12,16 @@ seo:
   primaryKeyword: "what is AI agent memory"
   secondaryKeywords: ["AI agent memory", "AI agent memory types", "how do AI agents remember", "agent memory architecture"]
   searchIntent: "informational"
+wordCount: 2545
+faqs:
+  - question: "How is AI agent memory different from RAG?"
+    answer: "RAG retrieves documents from a vector database to inject into the context window. AI agent memory is broader. It includes RAG but also covers relational data (who the user is, how entities connect), temporal awareness (what changed recently), procedural knowledge (learned workflows), and memory lifecycle management (what to remember, what to forget)."
+  - question: "Do all AI agents need memory?"
+    answer: "Not all. Simple single-session tools (a grammar checker, a code formatter) work fine without memory. But any agent that interacts with the same users over time, handles personalized tasks, or needs to maintain consistency across sessions benefits from memory. The more autonomous the agent, the more critical memory becomes."
+  - question: "What is the difference between short-term and long-term agent memory?"
+    answer: "Short-term memory is the active context within a single session, typically stored in the LLM's context window. It disappears when the session ends. Long-term memory persists across sessions using external storage (databases, vector stores, knowledge graphs). Long-term memory is what makes an agent recognize you and build on past interactions."
+  - question: "Can I build an agent memory system from scratch?"
+    answer: "You can, but the engineering cost is significant. Data ingestion alone (OAuth flows, API integrations, data normalization across dozens of sources) typically takes 3-6 months. Then you need indexing, retrieval tuning, and memory lifecycle management. Teams that want to ship faster often use managed infrastructure like Hyperspell to handle the memory layer while they focus on their agent's core value."
 ---
 
 # What Is AI Agent Memory? Types, Architecture, and How Modern Agents Remember

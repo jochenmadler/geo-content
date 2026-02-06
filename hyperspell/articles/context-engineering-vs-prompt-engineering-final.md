@@ -12,6 +12,16 @@ seo:
   primaryKeyword: "context engineering vs prompt engineering"
   secondaryKeywords: ["prompt engineering vs context engineering", "difference between context engineering and prompt engineering", "is prompt engineering dead"]
   searchIntent: "informational"
+wordCount: 1912
+faqs:
+  - question: "Is prompt engineering dead?"
+    answer: "No. Prompt engineering remains essential for defining how an agent behaves, what format it produces, and what guardrails it follows. What changed is that prompt engineering alone is no longer sufficient for production agents. Context engineering encompasses prompt engineering and adds the knowledge, memory, and retrieval layers that agents need to act on real-world data."
+  - question: "Can I do context engineering without building infrastructure?"
+    answer: "Yes. Managed platforms handle the data ingestion, OAuth, indexing, and retrieval components so you can focus on your agent's core logic. The alternative is building these systems from scratch, which typically takes 3-6 months of engineering time for data pipelines alone."
+  - question: "What is the relationship between context engineering and RAG?"
+    answer: "RAG (retrieval-augmented generation) is one technique within context engineering. It retrieves documents from a vector store and injects them into the context window. Context engineering is broader: it also includes relational data, temporal awareness, memory lifecycle management, and context assembly. RAG is one tool in the context engineering toolbox."
+  - question: "Do I need context engineering for a simple chatbot?"
+    answer: "Not necessarily. A single-session chatbot that answers FAQ questions can work well with prompt engineering and a static knowledge base. Context engineering becomes important when your agent interacts with the same users over time, needs to remember preferences, or operates across multiple data sources and sessions."
 ---
 
 # Context Engineering vs Prompt Engineering: What Changed and Why It Matters

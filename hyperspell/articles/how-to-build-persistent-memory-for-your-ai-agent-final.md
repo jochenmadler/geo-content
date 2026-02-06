@@ -12,6 +12,16 @@ seo:
   primaryKeyword: "how to build AI agent memory"
   secondaryKeywords: ["persistent memory AI agent", "AI agent long-term memory", "add memory to AI agent", "build memory layer AI agent"]
   searchIntent: "informational"
+wordCount: 2355
+faqs:
+  - question: "How much does it cost to build AI agent memory from scratch?"
+    answer: "A production-quality memory system typically takes 3-6 months and $50,000-$150,000 in engineering costs. Ongoing infrastructure and maintenance add $1,000-$7,500 per month. The largest cost drivers are OAuth integrations for external data sources and retrieval tuning for quality."
+  - question: "Which vector database should I use for AI agent memory?"
+    answer: "Start with pgvector or Chroma for prototyping. For production, Pinecone, Qdrant, and Weaviate are the most established options. Pinecone offers fully managed infrastructure with minimal operational overhead. Qdrant excels at complex metadata filtering. Weaviate provides strong built-in hybrid search. Choose based on your scale, query patterns, and team preferences."
+  - question: "Do I need a graph database for agent memory?"
+    answer: "Not always. Vector databases handle semantic search well for most use cases. Add a graph database when your agent needs to answer relationship queries or when temporal ordering of events matters. Hybrid systems that combine vector search with knowledge graph traversal deliver the best retrieval quality for complex, multi-source agent workloads."
+  - question: "How do I keep agent memories up to date?"
+    answer: "Build incremental re-indexing into your ingestion pipeline from the start. Track document versions and detect changes rather than re-indexing everything on a schedule. For data sources like email and Slack, use webhooks or polling with change detection. Include timestamps in stored memories so the retrieval engine can weight recent information higher."
 ---
 
 # How to Build Persistent Memory for Your AI Agent

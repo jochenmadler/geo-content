@@ -1,6 +1,6 @@
 ---
 name: contentwriting
-version: 3.8.0
+version: 3.9.0
 argument-hint: "<briefing-path> [word-count] e.g. hyperspell/Hyperspell - 2.md 3000"
 description: When the user wants to write a blog post from a content briefing. Use when the user says "write blog post," "create article," "blog from briefing," or provides a content briefing file. Works with company-context for company voice and tone.
 ---
@@ -599,6 +599,8 @@ Populate the frontmatter from the content briefing. Use the briefing's exact val
 | `seo.searchVolume` | Briefing "Search volume" if provided, otherwise omit |
 | `seo.metaTitle` | Write fresh: 50-60 chars, includes primary keyword |
 | `seo.metaDescription` | Write fresh: 150-160 chars, includes primary keyword |
+| `wordCount` | Count the words in the finished article body (exclude YAML frontmatter) |
+| `faqs` | Array of `{question, answer}` pairs from the FAQ section. Answers must be plain text (no markdown). |
 
 ```markdown
 ---
@@ -616,6 +618,14 @@ seo:
   secondaryKeywords: ["kw1", "kw2", "kw3"]
   searchIntent: "[informational | commercial | comparison | navigational]"
   searchVolume: "[monthly volume if known, e.g. 12100]"
+wordCount: {word count of article body, excluding frontmatter}
+faqs:
+  - question: "[FAQ question 1]"
+    answer: "[FAQ answer 1, plain text, no markdown]"
+  - question: "[FAQ question 2]"
+    answer: "[FAQ answer 2, plain text, no markdown]"
+  - question: "[FAQ question 3]"
+    answer: "[FAQ answer 3, plain text, no markdown]"
 ---
 
 # [H1 Title - includes primary keyword]
@@ -675,7 +685,7 @@ Do **not** add any meta content, publication notes, or changelog after the Sourc
 ## Related Skills
 
 - **refine**: For polishing the draft after writing
-- **schema**: For generating JSON-LD structured data from a refined article
+- **schema**: For generating one-time Next.js JSON-LD integration templates (once per customer)
 - **copy-editing**: For marketing copy and landing page editing
 - **copywriting**: For landing page and marketing page copy
 - **company-context**: For establishing brand voice and context

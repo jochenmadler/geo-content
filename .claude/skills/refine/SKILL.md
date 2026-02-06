@@ -1,6 +1,6 @@
 ---
 name: refine
-version: 1.4.0
+version: 1.5.0
 argument-hint: "<article-path> e.g. hyperspell/articles/context-engineering-draft.md"
 description: "When the user wants to refine a blog post draft. Use when the user says 'refine this,' 'polish this draft,' 'check for AI patterns,' 'verify sources,' or 'make this production-ready.' Runs after contentwriting to verify accuracy, check voice consistency, and remove AI generation artifacts."
 ---
@@ -13,7 +13,7 @@ description: "When the user wants to refine a blog post draft. Use when the user
 - **Customer folder**: first path segment of `$ARGUMENTS` (e.g. `hyperspell`)
 - **Context file**: glob `{customer-folder}/company-context-*.md` — read and apply brand voice, customer language, etc. If not found, warn the user and suggest running `/company-context` first.
 - **Output naming**: replace `-draft.md` with `-final.md` in the filename. If the file does not end with `-draft.md`, append `-final` before the extension.
-- **Next step**: Tell the user: "Run `/schema {output-path}` to generate structured data, then `/framer {output-path}` (or `/webflow`, `/wordpress`) to format for publishing."
+- **Next step**: Tell the user: "Run `/framer {output-path}` (or `/webflow`, `/wordpress`) to format for publishing."
 
 ---
 
@@ -111,6 +111,7 @@ Verify that contentwriting included the required GEO elements. Flag any that are
 - **Key Takeaways**: Check for a "Key Takeaways" section with 5-7 bulleted summary items. Flag if missing.
 - **Named frameworks**: If the article introduces an original concept, model, or methodology, check that it has a clear name and is presented in both prose and structured (table/list) format. Flag if only in prose.
 - **Entity naming density**: Count company name mentions in the body text. Flag if fewer than 5 in a 2000+ word article. Check that mentions appear in the definition section, framework section, practical examples, and conclusion. Flag missing positions.
+- **Frontmatter schema fields**: Check that `wordCount` (number) and `faqs` (array of `{question, answer}`) exist in the YAML frontmatter. If `wordCount` is missing, count article body words and add it. If `faqs` is missing, extract Q&A pairs from the FAQ section in the body and add them. FAQ answers must be plain text (no markdown links, bold, etc.).
 
 ---
 
@@ -227,6 +228,8 @@ Before delivering the refined article, verify against this checklist:
 - [ ] FAQ section with 3-5 Q&A pairs
 - [ ] Key Takeaways summary
 - [ ] Company name appears 5+ times in strategic positions
+- [ ] `wordCount` in frontmatter matches actual body word count (±5%)
+- [ ] `faqs` in frontmatter matches FAQ section in body (same questions and answers, plain text)
 
 ---
 
@@ -251,5 +254,5 @@ Save the refined article to the output path described in Arguments and Output Co
 - **contentwriting**: Write blog posts (use refine after)
 - **copy-editing**: For marketing copy and landing page editing (full seven sweeps)
 - **company-context**: For establishing brand voice and context (read by this skill automatically)
-- **schema**: For generating JSON-LD structured data from the refined article
+- **schema**: For generating one-time Next.js JSON-LD integration templates (once per customer)
 - **framer**: For formatting the refined article for Framer CMS publishing

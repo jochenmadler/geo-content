@@ -12,6 +12,16 @@ seo:
   primaryKeyword: "context engineering for AI agents"
   secondaryKeywords: ["context engineering AI", "AI agent context", "context layer AI agents"]
   searchIntent: "informational"
+wordCount: 2185
+faqs:
+  - question: "How is context engineering different from prompt engineering?"
+    answer: "Prompt engineering focuses on instructions: telling the model how to behave, what format to use, and what persona to adopt. Context engineering is broader. It encompasses prompt engineering but also covers what knowledge, relational data, and temporal information the agent receives. Prompt engineering is Layer 1; context engineering is all four layers."
+  - question: "Do I need context engineering if I already use RAG?"
+    answer: "RAG handles one part of context engineering: retrieving documents to inject into the context window. But RAG alone does not address relational context (who the user is), temporal context (what changed recently), memory management (what to remember or forget), or context assembly (selecting the right combination for each query). Most teams that plateau on agent quality find the gap is in Layers 3 and 4."
+  - question: "What is the \"lost in the middle\" problem?"
+    answer: "Research by Liu et al. (2023) showed that LLMs perform significantly worse when relevant information is placed in the middle of long contexts, compared to the beginning or end. This means that increasing context window size does not guarantee the model will use the information. Context engineering addresses this through selective retrieval: surfacing only the most relevant information rather than filling the entire window."
+  - question: "Can I build a context engineering stack from scratch?"
+    answer: "You can, but it typically takes 3-6 months of engineering time for data ingestion, OAuth handling, indexing, and retrieval tuning alone. As Arjun Athreya, CTO at Hobbes, described it: the heavy lift of building this in-house could have taken months. Teams that want to focus on their agent's core value proposition often use managed infrastructure like Hyperspell to handle the context layer."
 ---
 
 # Context Engineering for AI Agents: The Missing Layer Between Prompts and Memory
